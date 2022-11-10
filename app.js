@@ -13,5 +13,19 @@
 // limitations under the License.
 
 function submit_search_request(){
-    alert('Button has been pressed!')
+    // alert('Button has been pressed!')
+    const httpRequest = new XMLHttpRequest();
+    const query = "http://localhost:8888/comp2245-assignment4/superheroes.php"
+    httpRequest.onreadystatechange = (e) => {
+        if (httpRequest.readyState === XMLHttpRequest.DONE) {
+            if (httpRequest.status === 200) {
+            let response = httpRequest.responseText;
+            alert(response);
+            } else {
+                alert('There was a problem with the request.');
+            }
+           }
+    }
+    httpRequest.open('GET',query)
+    httpRequest.send();
 }

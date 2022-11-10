@@ -32,11 +32,11 @@
 <body>
     <div class="container">
         <div class="operations">
-            <form action="" class="search-hero-form">
+            <form action="superheroes.php" method="post" class="search-hero-form">
                 <label for="hero-name-input" class="search-request">Search Request Form</label>
                 <div class="form-item">
-                    <input type="text" id="hero-name-input" placeholder="Enter Super Hero Name">
-                    <button title="Submit" id="submit-form" class="submit-button" onclick="submit_search_request()">Submit</button>
+                    <input name="search" type="text" id="hero-name-input" placeholder="Enter Super Hero Name">
+                    <button type="submit" id="submit-form" class="submit-button" value="Search" >Submit</button>
                 </div>
             </form>
         </div>
@@ -44,8 +44,8 @@
             <div class="container" id="output"></div>
         </div>
     </div>
-    <footer>
-        <p class="copyright">Copyright 2022</p>
-    </footer>
+        <!-- <footer>
+            <p class="copyright">Copyright 2022</p>
+        </footer> -->
 </body>
 </html>

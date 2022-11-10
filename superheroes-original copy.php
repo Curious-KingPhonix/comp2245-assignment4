@@ -1,4 +1,5 @@
 <?php
+
 $superheroes = [
   [
       "id" => 1,
@@ -61,39 +62,11 @@ $superheroes = [
       "biography" => "Notably powerful, Wanda Maximoff has fought both against and with the Avengers, attempting to hone her abilities and do what she believes is right to help the world.",
   ], 
 ];
-?>
 
+?>
 
 <ul>
-<?php foreach ($superheroes as $super_hero): ?>
-  <li><?= $super_hero['alias']; ?></li>
+<?php foreach ($superheroes as $superhero): ?>
+  <li><?= $superhero['alias']; ?></li>
 <?php endforeach; ?>
 </ul>
-
-<?php
-if($_SERVER['REQUEST_METHOD'] == 'POST'){
-    $query = $_POST['search'];
-    if(empty($query)) {
-        echo "<h1 style=color:blue>Hero Details</h1>\n<hr>\n<ul>";
-        foreach ($superheroes as $super_hero){
-            echo "<li>" . $super_hero['name'] . "</li>";
-        }
-        echo "</ul>";
-    }
-    else {
-        $found = false;
-        foreach ($superheroes as $super_hero) {
-            if( ($super_hero['name'] == $searchQuery) || ($super_hero['alias'] == $searchQuery) ) {
-                $found = true;
-                echo "<h1 style=color:Green>Results</h1>\n<hr>\n<h3 class=\heroalias\>" . 
-                $super_hero['alias'] . "</h3>\n<h4 class=\hero-name\> AKA " . 
-                $super_hero['name'] . "</h4>\n<p class=\bio\>" . 
-                $super_hero['biography'] . "</p>";
-                break;
-            }}
-        }
-        if($found = false) {
-            echo "<h1>Result</h1>\n<hr>\n<h4 class=\notfound\ style=color: Red>Superhero not found</h4>";
-    }
-}
-?>

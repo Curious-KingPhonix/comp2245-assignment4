@@ -54,6 +54,7 @@ body {
 }
 .search-request{
     font-size: 24px;
+    color: black;
 }
 .search-hero-form{
     display: flex;
