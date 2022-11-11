@@ -71,8 +71,14 @@ $superheroes = [
 </ul>
 
 <?php
-if($_SERVER['REQUEST_METHOD'] == 'POST'){
-    $query = $_POST['search'];
+function sanitization($data) {
+    $data = htmlspecialchars($data);
+    $data = stripslashes($data);
+    $data = trim($data);
+    return $data;
+}
+if($_SERVER['REQUEST_METHOD'] == 'post'){
+    $query = sanitization($_POST['search']);
     if(empty($query)) {
         echo "<h1 style=color:blue>Hero Details</h1>\n<hr>\n<ul>";
         foreach ($superheroes as $super_hero){
@@ -83,7 +89,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
     else {
         $found = false;
         foreach ($superheroes as $super_hero) {
-            if( ($super_hero['name'] == $searchQuery) || ($super_hero['alias'] == $searchQuery) ) {
+            if( ($super_hero['name'] == $query) || ($super_hero['alias'] == $query) ) {
                 $found = true;
                 echo "<h1 style=color:Green>Results</h1>\n<hr>\n<h3 class=\heroalias\>" . 
                 $super_hero['alias'] . "</h3>\n<h4 class=\hero-name\> AKA " . 
@@ -92,8 +98,6 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
                 break;
             }}
         }
-        if($found = false) {
-            echo "<h1>Result</h1>\n<hr>\n<h4 class=\notfound\ style=color: Red>Superhero not found</h4>";
-    }
+        if($found = false) echo "<h1>Result</h1>\n<hr>\n<h4 class=\notfound\ style=color: Red>Superhero not found</h4>";    
 }
 ?>

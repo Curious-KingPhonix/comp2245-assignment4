@@ -67,7 +67,7 @@ body {
     justify-content: center;
     gap: 5px;
 }
-#hero-name-input{
+#search{
     height: 40px;
     width: 320px;
     text-align: justify;
@@ -78,6 +78,12 @@ body {
     position: relative;
     width: 100px;
     font-size: large;
+    background-color: var(--primary-color);
+    color: var(--secondary-color);
+}
+.submit-button:hover{
+    background-color: lightskyblue;
+    color: black;
 }
 footer{
     background: grey;
