@@ -11,4 +11,32 @@
 // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 // See the License for the specific language governing permissions and
 // limitations under the License.
+const httpRequest = new XMLHttpRequest()
 
+function makeHttpRequest(url){
+    if(!httpRequest){
+        alert("Error | Unable to create XMLHttpRequest object")
+        return false;
+    }
+    httpRequest.onreadystatechange = () =>{
+        if( httpRequest.readyState === XMLHttpRequest.DONE){
+            if( httpRequest.status === 200 ) {
+                // Do something
+                document.getElementById("search-result").innerHTML = httpRequest.responseText
+            } else {
+                alert(`XMLHttpRequest returned ${httpRequest,status}`)
+            }
+        }
+    }
+    httpRequest.open("GET",url)
+    httpRequest.send()
+}
+
+window.onload = () => {
+    document.getElementById('submit').onclick = (e) => {
+        let query = document.getElementById('search-index').value
+        queryUrl = `superheroes.php?query=${query}`
+        makeHttpRequest(queryUrl)
+    }
+}
+window
