@@ -1,4 +1,5 @@
 <?php
+
 $superheroes = [
   [
       "id" => 1,
@@ -60,27 +61,12 @@ $superheroes = [
       "alias" => "Scarlett Witch",
       "biography" => "Notably powerful, Wanda Maximoff has fought both against and with the Avengers, attempting to hone her abilities and do what she believes is right to help the world.",
   ], 
-];?>
+];
 
-<?php
-    $character = null;
-    if(isset($_GET['query'])){
-        $query_string = strip_tags($_GET['query']);
-        if(empty($query_string)){
-            // Nothing was passed, return character names
-            echo "<ul>";
-            foreach ($superheroes as $superhero) {
-                echo "<li>".$superhero['name']."</li>";
-            }
-            echo "</ul>";
-            return;
-        }
-        foreach ($superheroes as $superhero) {
-            if( $superhero['name'] === $query_string || $superhero['alias'] === $query_string){
-                echo "<style>h4{margin:0;}</style><html><h3>".$superhero['name']."</h3><h4>A.K.A ".$superhero['alias']."</h4><p>".$superhero['biography']."</p></html>";
-                return;
-            }
-        }
-        echo "<h3 style=\"color:red;\">SUPERHERO NOT FOUND</h3>";
-    }
 ?>
+
+<ul>
+<?php foreach ($superheroes as $superhero): ?>
+  <li><?= $superhero['alias']; ?></li>
+<?php endforeach; ?>
+</ul>
