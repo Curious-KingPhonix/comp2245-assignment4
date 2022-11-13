@@ -13,39 +13,35 @@
  See the License for the specific language governing permissions and
  limitations under the License.
 -->
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Comp2245-Assignment-#4</title>
-    <script src="./app.js"></script>
     <link rel="stylesheet" href="styles.css">
+    <script src="app.js"></script>
+    <title>Comp2245-Assignment#4</title>
 </head>
-<header>
-    <div class="header-container">
-        <h1 id="objective">Super Hero <span id="title-sept">Query</span></h1>
-    </div>
-</header>
 <body>
     <div class="container">
-        <div class="operations">
-            <form action="superheroes.php" method="get" class="search-hero-form">
-                <label for="hero-name-input" class="search-request">Search Request Form</label>
-                <div class="form-item">
-                    <input name="search" type="text" id="search" placeholder="Enter Super Hero Name">
-                    <button type="submit" id="submit-form" class="submit-button" value="Search" >Submit</button>
-                </div>
-            </form>
+        <div class="title-background">
+            <h1 class="title">AVENGERS CHARACTER SEARCH</h1>
         </div>
-        <div class="operations">
-            <div class="container" id="output"></div>
+        <label for="search" class="search-panel">
+            <p>Search by Full Name or Alias</p>
+            <div class="search-bar">
+                <input type="text" name="search" id="search-index" placeholder="e.g Captain America or Steve Rogers">
+                <button class="search-button" id="submit">
+                    Search
+                </button>
+            </div>
+        </label>
+        <div class="results">
+            RESULT
+            <hr class="divider">
+            <div id="search-result" ></div>
         </div>
     </div>
-        <!-- <footer>
-            <p class="copyright">Copyright 2022</p>
-        </footer> -->
 </body>
 </html>

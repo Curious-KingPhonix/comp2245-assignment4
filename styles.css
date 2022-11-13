@@ -13,81 +13,63 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
- * {
-    margin: 0;
-    padding: 0;
-    font-family: Roboto,"Helvetica Neue",Arial,sans-serif;
-}
-/*Must find a way to make a sticky footer*/
 :root{
-    --primary-color:brown;
-    --secondary-color:white;
+    --primary-color:rgb(34, 121, 168);
+    --secondary-color:red;
+    --text-color:white;
 }
-body {
+
+* {
+
+}
+.container{
     display: flex;
     flex-direction: column;
-    min-height: 100vh;
-    color: #fff;
-  }
-.header-container{
+}
+.title-background{
+    padding:0;
     display: flex;
-    
-    padding: 30px;
     justify-content: center;
-    font-size: 46px;
-    color: var(--secondary-color);
     background-color: var(--primary-color);
+    color: var(--text-color);
 }
-#title-sept {
-    color: aqua;
+.search-panel{
+    margin-left: 12%;
+    margin-right: 12%;
 }
-.container {
+.search-bar{
     display: flex;
-    justify-content: space-evenly;
-    align-items: stretch;
     flex-direction: row;
+    flex-shrink: 0;
+    flex-grow: 2;
 }
-.operations{
-    text-align: center;
-    flex-grow: 1;
-    margin: 10px;
+#search-index{
+    width: max-content;
+    width: 800px;
 }
-.search-request{
-    font-size: 24px;
-    color: black;
+#submit{
+    background-color: var(--secondary-color);
+    color: var(--text-color);
+    width: 120px;
+    height: 35px;
+    border-radius: 2px;
+    margin-left: 5px;
 }
-.search-hero-form{
-    display: flex;
-    flex-direction: column;
-    row-gap: 5px;
-    font-size: large;
+#submit:active{
+    opacity: 0.3;
 }
-.form-item{
-    display: flex;
-    justify-content: center;
-    gap: 5px;
+.divider{
+    margin: 0;
+    margin-top: 30px;
+    padding: 0 ;
 }
-#search{
-    height: 40px;
-    width: 320px;
-    text-align: justify;
-    text-indent: 5px;
-    font-size: large;
+.results{
+    margin-left: 12%;
+    margin-right: 12%;
+    margin-top: 40px;
+    font-size: 29PX;
+    /* font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif; */
 }
-.submit-button{
-    position: relative;
-    width: 100px;
-    font-size: large;
-    background-color: var(--primary-color);
-    color: var(--secondary-color);
-}
-.submit-button:hover{
-    background-color: lightskyblue;
-    color: black;
-}
-footer{
-    background: grey;
-    padding: 2rem;
-    text-align: center;
-    font-size: 20px;
+.search-result{
+    font-family: 'Courier New', Courier, monospace;
 }

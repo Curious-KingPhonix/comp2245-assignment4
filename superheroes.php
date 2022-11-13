@@ -60,44 +60,27 @@ $superheroes = [
       "alias" => "Scarlett Witch",
       "biography" => "Notably powerful, Wanda Maximoff has fought both against and with the Avengers, attempting to hone her abilities and do what she believes is right to help the world.",
   ], 
-];
-?>
-
-
-<ul>
-<?php foreach ($superheroes as $super_hero): ?>
-  <li><?= $super_hero['alias']; ?></li>
-<?php endforeach; ?>
-</ul>
+];?>
 
 <?php
-function sanitization($data) {
-    $data = htmlspecialchars($data);
-    $data = stripslashes($data);
-    $data = trim($data);
-    return $data;
-}
-if($_SERVER['REQUEST_METHOD'] == 'post'){
-    $query = sanitization($_POST['search']);
-    if(empty($query)) {
-        echo "<h1 style=color:blue>Hero Details</h1>\n<hr>\n<ul>";
-        foreach ($superheroes as $super_hero){
-            echo "<li>" . $super_hero['name'] . "</li>";
+    $character = null;
+    if(isset($_GET['query'])){
+        $query_string = strip_tags($_GET['query']);
+        if(empty($query_string)){
+            // Nothing was passed, return character names
+            echo "<ul>";
+            foreach ($superheroes as $superhero) {
+                echo "<li>".$superhero['name']."</li>";
+            }
+            echo "</ul>";
+            return;
         }
-        echo "</ul>";
+        foreach ($superheroes as $superhero) {
+            if( $superhero['name'] === $query_string || $superhero['alias'] === $query_string){
+                echo "<style>h4{margin:0;}</style><html><h3>".$superhero['name']."</h3><h4>A.K.A ".$superhero['alias']."</h4><p>".$superhero['biography']."</p></html>";
+                return;
+            }
+        }
+        echo "<h3 style=\"color:red;\">SUPERHERO NOT FOUND</h3>";
     }
-    else {
-        $found = false;
-        foreach ($superheroes as $super_hero) {
-            if( ($super_hero['name'] == $query) || ($super_hero['alias'] == $query) ) {
-                $found = true;
-                echo "<h1 style=color:Green>Results</h1>\n<hr>\n<h3 class=\heroalias\>" . 
-                $super_hero['alias'] . "</h3>\n<h4 class=\hero-name\> AKA " . 
-                $super_hero['name'] . "</h4>\n<p class=\bio\>" . 
-                $super_hero['biography'] . "</p>";
-                break;
-            }}
-        }
-        if($found = false) echo "<h1>Result</h1>\n<hr>\n<h4 class=\notfound\ style=color: Red>Superhero not found</h4>";    
-}
 ?>

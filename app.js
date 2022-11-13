@@ -11,21 +11,33 @@
 // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 // See the License for the specific language governing permissions and
 // limitations under the License.
+const httpRequest = new XMLHttpRequest()
+const url = "superheroes.php"
 
-function submit_search_request(){
-    // alert('Button has been pressed!')
-    const httpRequest = new XMLHttpRequest();
-    const query = "http://localhost:8888/comp2245-assignment4/superheroes.php"
-    httpRequest.onreadystatechange = (e) => {
-        if (httpRequest.readyState === XMLHttpRequest.DONE) {
-            if (httpRequest.status === 200) {
-            let response = httpRequest.responseText;
-            alert(response);
-            } else {
-                alert('There was a problem with the request.');
-            }
-           }
+function makeHttpRequest(query){
+    if(!httpRequest){
+        alert("Error | Unable to create XMLHttpRequest object")
+        return false;
     }
-    httpRequest.open('GET',query)
-    httpRequest.send();
+
+    httpRequest.onreadystatechange = () =>{
+        if( httpRequest.readyState === XMLHttpRequest.DONE){
+            if( httpRequest.status === 200 ) {
+                // Do something
+                document.getElementById("search-result").innerHTML = httpRequest.responseText
+            } else {
+                alert(`XMLHttpRequest returned ${httpRequest.status}`)
+            }
+        }
+    }
+    httpRequest.open('GET',`superheroes.php?query=${query}`,true)
+    httpRequest.send()
 }
+
+window.onload = () => {
+    document.getElementById('submit').onclick = (e) => {
+        let query = document.getElementById('search-index').value
+        makeHttpRequest(query)
+    }
+}
+window
